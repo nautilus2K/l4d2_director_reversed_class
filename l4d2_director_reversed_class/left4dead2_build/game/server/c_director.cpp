@@ -5,7 +5,18 @@
 // $NoKeywords: $
 //===========================================================================//
 
-/* Register ConVar's in this file? */
+//One of the options for registering console commands.
+CON_COMMAND(director_start, "")
+{
+	
+}
+
+CON_COMMAND(director_stop, "")
+{
+	
+}
+
+ConVar *director_debug = NULL;
 
 void CDirector::ClearCachedBotQueries();
 {
@@ -19,12 +30,12 @@ void CDirector::ForceNextStage();
 
 float CDirector::GetAveragedSurvivorSpan();
 {
-	
+	return m_fAvgSurvivorSpan;
 }
 
 float CDirector::GetAveragedSurvivorSpeed();
 {
-	
+	return m_fAvgSurvivorSpeed;
 }
 
 int CDirector::GetCommonInfectedCount();
@@ -34,7 +45,7 @@ int CDirector::GetCommonInfectedCount();
 
 float CDirector::GetFurthestSurvivorFlow();
 {
-	
+	return m_fFurthestSurvivorFlow;
 }
 
 std::string CDirector::GetGameMode()
@@ -54,7 +65,7 @@ int CDirector::GetPendingMobCount()
 
 bool CDirector::HasAnySurvivorLeftSafeArea()
 {
-	
+	return m_bHasSurvivorLeftSafeArea;
 }
 
 bool CDirector::IsAnySurvivorInCombat()
@@ -121,4 +132,6 @@ void CDirector::UserDefinedEvent4()
 {
 	
 }
+
+ConVar director_debug("director_debug", "0", FCVAR_CHEAT);
 
