@@ -93,6 +93,12 @@ enum PanicEventStage
 // INDIVIDUAL OFFSETS HAVE NOT BEEN UPDATED/VERIFIED FOR v2125
 class CDirectorScriptedEventManager 
 {
+public:
+	virtual int __userpurge		StartPanicEvent(CDirectorScriptedEventManager *a1@<ecx>, int a2@<ebx>, signed int a3, int a4);
+	virtual void __thiscall		UpdatePanicEvents(int this);
+	virtual bool				ShouldPanicForever(CDirectorScriptedEventManager a1);
+	virtual void				OnPanicEventFinished(CDirectorScriptedEventManager a1);
+	
 private:
 	FinaleType_t m_FinaleType; // 0x00 should have some sort of enum, 5==no script
 	FinaleStageType m_CurrentFinaleStage; // 0x04 there are 16 valid values
@@ -235,6 +241,9 @@ class CDirector : public C_BaseEntity
 public:
 	virtual void 			ClearCachedBotQueries();
 	virtual void			ForceNextStage();
+	virtual void			UpdateTempo();
+	virtual void			UpdateTankSpawns();
+	
 	virtual float			GetAveragedSurvivorSpan();
 	virtual float			GetAveragedSurvivorSpeed();
 	virtual int				GetCommonInfectedCount();
@@ -242,20 +251,36 @@ public:
 	virtual std::string		GetGameMode();
 	virtual float			GetHoldoutCooldownEndTime();
 	virtual int				GetPendingMobCount();
+	
 	virtual bool			HasAnySurvivorLeftSafeArea();
 	virtual bool			IsAnySurvivorInCombat();
 	virtual bool			IsPlayingOnConsole(); //???
 	virtual bool			IsSinglePlayerGame();
 	virtual bool			IsTankInPlay();
+	
 	virtual void			L4D1SurvivorGiveItem();
 	virtual void			PlayMegaMobWarningSounds();
+	
 	virtual void			ResetMobTime();
 	virtual void			ResetSpecialTimers();
+	virtual void			Reset();
+	
 	virtual void			SetHoldoutCooldownEndTime( float time );
+	
 	virtual void			UserDefinedEvent1();
 	virtual void			UserDefinedEvent2();
 	virtual void			UserDefinedEvent3();
 	virtual void			UserDefinedEvent4();
+	
+	
+	virtual int				GetMapArcValue(CDirector Name);
+	virtual int				GetMegaMobSize(CDirector Name);
+	virtual int				GetScriptValue(CDirector a1, int a2, int a3);
+	virtual float __fastcall GetPanicWavePauseMax(CDirector a1);
+	virtual float __fastcall GetPanicWavePauseMin(CDirector a1);
+	virtual void			OnFinalePause(CDirector a1);
+	virtual void			OnMobRushStart(CDirector a1);
+	virtual bool			ShouldPausePanicWhenRelaxing(CDirector a1);
 
 private:
 	CDirector_vtable * vptr; // 0x0
