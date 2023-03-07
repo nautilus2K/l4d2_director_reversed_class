@@ -272,12 +272,11 @@ public:
 	virtual void			UserDefinedEvent3();
 	virtual void			UserDefinedEvent4();
 	
-	
 	virtual int				GetMapArcValue(CDirector Name);
 	virtual int				GetMegaMobSize(CDirector Name);
 	virtual int				GetScriptValue(CDirector a1, int a2, int a3);
-	virtual float __fastcall GetPanicWavePauseMax(CDirector a1);
-	virtual float __fastcall GetPanicWavePauseMin(CDirector a1);
+	virtual float			GetPanicWavePauseMax(CDirector a1);
+	virtual float			GetPanicWavePauseMin(CDirector a1);
 	virtual void			OnFinalePause(CDirector a1);
 	virtual void			OnMobRushStart(CDirector a1);
 	virtual bool			ShouldPausePanicWhenRelaxing(CDirector a1);

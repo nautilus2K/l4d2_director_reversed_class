@@ -30,9 +30,10 @@ struct ZombieManager_UnknownStruct // 0x14, I guess it can be NavArea or CTerror
 class ZombieManager
 {
 public:
-	virtual void __thiscall			SpawnMegaMob(void (__thiscall ***this)(int, int));
-	virtual void __thiscall			ClearPendingMobCount(ZombieManager a1);
-	virtual void __thiscall			 ClearPendingMobCount2(ZombieManager a1);
+	void __thiscall			SpawnMegaMob(void (__thiscall ***this)(int, int));
+	void __thiscall			ClearPendingMobCount(ZombieManager a1);
+	void __thiscall			ClearPendingMobCount2(ZombieManager a1);
+	void __thiscall			StartFrame(ZombieManager a1);
 	
 private:
     void *vptr; // 0x0, virtual destructor only

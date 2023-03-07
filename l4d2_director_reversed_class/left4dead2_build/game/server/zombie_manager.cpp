@@ -15,7 +15,7 @@ void __thiscall ZombieManager::SpawnMegaMob(void (__thiscall ***this)(int, int))
     v1 = this;
 
     v4 = RandomFloat(2.0, 4.0);
-    v2 = Countdown::Now() + v4;
+	this->m_flMegaMobSpawnTime = Countdown::Now() + RandomFloat(2.0, 4.0);
 
 	//Setting the timer time and duration
     if ( *((float *)v1 + 14) != v2 )
@@ -31,13 +31,29 @@ void __thiscall ZombieManager::SpawnMegaMob(void (__thiscall ***this)(int, int))
     }
 }
 
+void __thiscall ZombieManager::StartFrame(ZombieManager a1);
+{
+	if (this->m_bSpawnMegaMobWave)
+	{
+		if (this->m_flMegaMobSpawnTime != -1 && this->m_flMegaMobSpawnTime <= CountdownTimer::Now())
+		{
+			ZombieManager::SpawnMob(this, CDirector::GetMegaMobSize(TheDirector));
+		}
+	}
+	else 
+	{
+		//Spawn pending mobs
+	}
+}
+
 void __thiscall ZombieManager::ClearPendingMobCount(ZombieManager a1);
 {
-	
+	m_nPendingMobCount = 0;
 }
 
 void __thiscall ZombieManager::ClearPendingMobCount2(ZombieManager a1)
 {
-	
+	m_nPendingMobCount = 0;
+	UTIL_LogPrintf( "%3.2f: ZombieManager::ClearPendingMobCount2: m_nPendingMobCount was cleared!", *(float *)(gpGlobals + 12) );
 }
 
